@@ -1,6 +1,7 @@
 package nivel1_ej01;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 
 public class Main {
 
@@ -11,19 +12,22 @@ public class Main {
 		
 		generateMonthList(monthList);
 		printMonths(monthList);
+		
+		//Se añade Agosto en la posicion 7 del Array (corresponde al mes 8).
 		monthList.add(7, new Month("Agosto"));
 		System.out.println("Se ha añadido 'Agosto' en su lugar correspondiente."+"\n");
 		printMonths(monthList);
 		
+		//Conversión del ArrayList a HashSet.
 		HashSet<Month> hsMonths = new HashSet<Month>(monthList);
 		printHsMonths(hsMonths);
 		
-		addMonth(hsMonths);
-		printHsMonths(hsMonths);
+		/*addMonth(hsMonths);
+		printHsMonths(hsMonths);*/
 		
 		
 	}
-
+	//For-each que muestra por pantalla todos los elementos del ArrayList.
 	public static void printMonths(ArrayList<Month> monthList) {
 		int i=1;
 		for (Month m : monthList) {
@@ -32,15 +36,18 @@ public class Main {
 		}
 		System.out.println();
 	}
+	//Iterador que muestra por pantalla todos los elementos del HashSet.
 	public static void printHsMonths(HashSet<Month> hsMonths) {
-		int i=1;
-		for (Month m : hsMonths) {
-			System.out.print(i++ + "·");
-			System.out.println(m.getName());
+		int i = 1;
+		Iterator<Month> itMonths = hsMonths.iterator();
+		while(itMonths.hasNext()) {
+			System.out.print(i++ +".");
+			System.out.println(itMonths.next().getName());
 		}
 		System.out.println();
 		
 	}
+	//Rellenar ArrayList de meses omitiendo Agosto.
 	public static void generateMonthList(ArrayList<Month> monthList) {
 		
 		monthList.add(new Month("Enero"));
@@ -56,13 +63,12 @@ public class Main {
 		monthList.add(new Month("Diciembre"));
 	}
 	
-	public static void addMonth(HashSet<Month> hsMonths) {
-		hsMonths.add(new Month("Junio"));
-		if(hsMonths.add(new Month("Junio"))) {
+	/*public static void addMonth(HashSet<Month> hsMonths) {
+		if(hsMonths.add("Junio")){
 			System.out.println("Añadido");
 		}else {
 			System.out.println("No se ha podido añadir porque ya se encuentra en la lista.");
 		}
-	}
+	}*/
 
 }

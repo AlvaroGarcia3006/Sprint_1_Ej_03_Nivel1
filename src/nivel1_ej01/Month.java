@@ -2,7 +2,8 @@ package nivel1_ej01;
 
 public class Month {
 	
-	private String name;
+	private final int MONTH_HASH = 1;
+	private final String name;
 
 	public Month(String name) {
 		super();
@@ -18,4 +19,13 @@ public class Month {
 		return "Month [name=" + name + "]";
 	}
 	
+	@Override
+	public int hashCode() {
+		return MONTH_HASH;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		Month month = (Month)obj;
+		return name.equals(month.getName());
+	}
 }

@@ -13,7 +13,6 @@ public class Main {
 		String user = createUser();
 		String rCountries = readCountries(txtInput);
 		genHsCountries(rCountries, hsCountries);
-		System.out.println(rCountries.split("\n").toString());
 		
 	}
 	public static String createUser() {

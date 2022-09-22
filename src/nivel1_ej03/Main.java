@@ -15,12 +15,14 @@ public class Main {
 		int score = randomCountry(user, readCountries(txtInput));
 		ranking(user, score);
 	}
+	//Método para crear usuario
 	public static String createUser() {
 		
 		System.out.println("Introduzca su nombre de usuario:");
 		Scanner sc = new Scanner(System.in);
 		return sc.nextLine();
 	}
+	//Método para leer el fichero de paises y convertirlo en un HashMap
 	public static HashMap<String, String> readCountries(String txtInput){
 		
 		HashMap<String, String> hmCountries = new HashMap<String, String>();
@@ -37,6 +39,7 @@ public class Main {
 		}
 		return hmCountries;
 	}
+	//Método que escoge un país al azar y pregunta al usuario su capital, contabiliza los aciertos totales del usuario.
 	public static int randomCountry(String user, HashMap<String, String> hmCountries) {
 		int points=0;
 		String answer, rKey, capital;
@@ -57,6 +60,7 @@ public class Main {
 		}
 		return points;
 	}
+	//Método que crea el fichero que almacena los puntos conseguidos por el usuario.
 	public static void ranking(String user, int score) {
 		String scoreboard = "C:/Users/alvar/eclipse-workspace/Sp1_ej03_GarciaAlvaro/src/nivel1_ej03/Clasificacion.txt";
 		try {

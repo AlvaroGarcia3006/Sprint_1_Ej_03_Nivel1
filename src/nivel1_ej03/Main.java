@@ -29,9 +29,9 @@ public class Main {
 		File inputCountries = new File(txtInput);
 		
 		try(Scanner sc = new Scanner(inputCountries)){
-			sc.useDelimiter("\r");
+			sc.useDelimiter("\n");
 			while(sc.hasNext()) {
-				String[] scLine = sc.next().split(" ");
+				String[] scLine = sc.next().split("\\s");
 				hmCountries.put(scLine[0], scLine[1]);
 			}
 		} catch (IOException e) {

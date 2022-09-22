@@ -29,7 +29,7 @@ public class Main {
 		File inputCountries = new File(txtInput);
 		
 		try(Scanner sc = new Scanner(inputCountries)){
-			sc.useDelimiter("\n");
+			sc.useDelimiter("\r");
 			while(sc.hasNext()) {
 				String[] scLine = sc.next().split(" ");
 				hmCountries.put(scLine[0], scLine[1]);

@@ -2,17 +2,19 @@ package nivel1_ej03;
 
 import java.util.Scanner;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map.Entry;
+import java.util.Random;
 
 public class Main {
 
 	public static void main(String[] args) {
 		
-		HashMap<String, String> hsCountries = new HashMap<String, String>();
 		String txtInput = "C:/Users/alvar/eclipse-workspace/Sp1_ej03_GarciaAlvaro/src/nivel1_ej03/Countries.txt";
 		String user = createUser();
-		String rCountries = readCountries(txtInput);
-		genHsCountries(rCountries, hsCountries);
+		//readCountries(txtInput);
+		randomCountry(user, readCountries(txtInput));
 		
 	}
 	public static String createUser() {
@@ -21,23 +23,44 @@ public class Main {
 		Scanner sc = new Scanner(System.in);
 		return sc.nextLine();
 	}
-	public static String readCountries(String txtInput){
+	public static HashMap<String, String> readCountries(String txtInput){
 		
-		StringBuilder sb = new StringBuilder();	
+		HashMap<String, String> hmCountries = new HashMap<String, String>();
 		File inputCountries = new File(txtInput);
 		
 		try(Scanner sc = new Scanner(inputCountries)){
 			sc.useDelimiter("\n");
 			while(sc.hasNext()) {
-				sb.append(sc.next()).append("\n");
+				String[] scLine = sc.next().split(" ");
+				hmCountries.put(scLine[0], scLine[1]);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return sb.toString();
+		return hmCountries;
 	}
-	public static HashMap<String, String> genHsCountries(String rCountries, HashMap <String, String> hsCountries){
+	public static void randomCountry(String user, HashMap<String, String> hmCountries) {
+		int points=0;
+		String answer, rKey, country;
+		Scanner sc = new Scanner(System.in);
+		Random r = new Random();
+		ArrayList<String> keys = new ArrayList<String>(hmCountries.keySet());
 		
-		return hsCountries;
+		System.out.println("Bienveni@ "+user+", empecemos a jugar:");
+		
+		for(int i=0; i<2; i++) {
+			rKey = keys.get(r.nextInt(keys.size()));
+			country = hmCountries.get(rKey);
+			System.out.print("Capital de "+country+": ");
+			answer = sc.nextLine();
+			for(Entry<String, String> entry : hmCountries.entrySet()) {
+				if(entry.getKey() == country) {
+					if(answer == entry.getValue()) {
+						points += 1;
+					}
+				}
+			}
+		}
+		System.out.println(points);
 	}
 }
